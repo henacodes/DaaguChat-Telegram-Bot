@@ -12,7 +12,7 @@ export const createNewChat = async (id, chatId, ctx) => {
   if (existsInChat) {
     return ctx.reply("You are already in chat");
   }
-  const randomDelaySecond = getRandomIntInclusive(1, 5);
+  const randomDelaySecond = getRandomIntInclusive(1, 10);
   ctx.reply("Searching for users.... ⌛⌛");
   setTimeout(async () => {
     const OnlinePeope = await OnlineUser.find({ inChat: false });
@@ -61,9 +61,9 @@ export const createNewChat = async (id, chatId, ctx) => {
           );
           await OnlineUser.deleteOne({ userId: id });
         }
-      }, 5000);
+      }, 8000);
     }
-  }, `${randomDelaySecond}000`);
+  }, `10000`);
 };
 
 export const stopChat = async (id, ctx) => {
@@ -80,11 +80,15 @@ export const stopChat = async (id, ctx) => {
 
 export const sendMessage = async (id, msg, ctx) => {
   const thisUser = await OnlineUser.findOne({ userId: id });
-  ctx.telegram.sendMessage(
-    thisUser.connectedTo,
-    `
+  if (thisUser) {
+    return ctx.telegram.sendMessage(
+      thisUser.connectedTo,
+      `
   ${msg}
-  - sent from user
+  - 📥 sent from user📥
   `
-  );
+    );
+  } else {
+    return ctx.reply("You no longer in chat");
+  }
 };
