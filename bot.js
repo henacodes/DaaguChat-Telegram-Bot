@@ -105,7 +105,12 @@ bot.use(async (ctx) => {
   }
 });
 
-bot.launch();
+bot.launch({
+  webhook: {
+    domain: "https://daaguchat-server.onrender.com",
+    port: process.env.PORT,
+  },
+});
 console.log("Bot conect successfully");
 // Enable graceful stop
 process.once("SIGINT", () => bot.stop("SIGINT"));
