@@ -21,7 +21,7 @@ const welcomeText = `
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 mongoose
-  .connect(process.env.MONGO_DB_URI)
+  .connect(process.env.ATLAS)
   .then(() => {
     console.log("DB Connected successfully");
   })
