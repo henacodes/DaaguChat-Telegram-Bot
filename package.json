@@ -1,20 +1,11 @@
 {
-  "name": "daagu-chat-bot",
+  "name": "daaguchat-telegram-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Anonymous chat telegram bot",
   "main": "bot.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node bot.js",
-    "dev":"nodemon bot.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "mongoose": "^6.9.2",
-    "telegraf": "^4.11.2"
-  }
+  "license": "ISC"
 }
