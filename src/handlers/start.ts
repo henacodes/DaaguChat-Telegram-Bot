@@ -22,10 +22,12 @@ export default async function (ctx: Context) {
     await ctx.reply(
       "Welcome to Daagu Chat. A place where you can find friends around the internet and chat with them anonymously. Lets get started",
       {
-        reply_markup: new InlineKeyboard().text("New Chat", "new_chat"),
+        reply_markup: new InlineKeyboard().text("New Chat ✅", "new_chat"),
       }
     );
   } catch (error) {
-    ctx.reply("There was a problem with our server please try again");
+    ctx.reply("There was a problem with our server please try again", {
+      reply_markup: new InlineKeyboard().text("New Chat ✅", "new_chat"),
+    });
   }
 }

@@ -23,7 +23,7 @@ export default async function (ctx: MyContext) {
         state: "in_chat",
         partner_id: telegram_id,
       } as DatabaseUser);
-      let reply = "You are connected to new user";
+      let reply = "You are connected to new user 👤";
       ctx.reply(reply);
       ctx.api.sendMessage(foundUserId, reply);
     } else {
@@ -36,6 +36,7 @@ export default async function (ctx: MyContext) {
         let response = await findUser(telegram_id);
         if (response![0].state !== "in_chat") {
           await updateUser(telegram_id, { state: "default" } as DatabaseUser);
+          await ctx.reply("Couldn't find anyone online ");
         }
       }, 10_000);
     }
