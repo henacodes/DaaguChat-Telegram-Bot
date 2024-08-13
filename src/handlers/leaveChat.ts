@@ -18,10 +18,10 @@ export default async function (ctx: MyContext) {
     } as DatabaseUser);
   }
   ctx.reply("You left the chat");
-  /*  ctx.api.sendMessage(
+  ctx.api.sendMessage(
     ctx.session.partner_id as number,
     "Your partner left the chat"
-  ); */
+  );
   ctx.session = {
     ...ctx.session,
     state: "default",
