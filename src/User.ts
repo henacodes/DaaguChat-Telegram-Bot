@@ -6,9 +6,11 @@ export interface TelegramUser {
 }
 
 export interface DatabaseUser extends TelegramUser {
-  age?: number | null;
+  age?: number | undefined;
   created_at?: string;
-  gender?: string | null;
-  id: number;
-  in_chat?: boolean | null;
+  gender?: string | undefined;
+  id?: number | undefined;
+  in_chat?: boolean | undefined;
+  state?: string | undefined;
+  partner_id?: number | undefined;
 }
