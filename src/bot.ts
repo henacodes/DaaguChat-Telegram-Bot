@@ -1,15 +1,25 @@
-import express, { Express, Request, Response } from "express";
+import { Bot, Context, InlineKeyboard, SessionFlavor } from "grammy";
 import dotenv from "dotenv";
 
+import { session, type Session } from "./session";
+
 dotenv.config();
+const BOT_TOKEN = process.env.BOT_TOKEN || "";
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
+type MyContext = Context & SessionFlavor<Session>;
+const bot = new Bot<MyContext>(BOT_TOKEN);
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+//middlewares
+bot.use(session);
+
+bot.command("start", async (ctx) => {
+  await ctx.reply(
+    "Welcome to Daagu Chat. A place where you can find friends around the internet and chat with them anonymously. Lets get started",
+    {
+      reply_markup: new InlineKeyboard().text("New Chat", "new_chat"),
+    }
+  );
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+// Start the bot.
+bot.start().then(() => console.log("Bot running "));
